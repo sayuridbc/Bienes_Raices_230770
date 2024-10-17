@@ -18,7 +18,7 @@ proyecto se realizara in sistema CRUD en el contexto de las operaciones comunes 
 
 
 ## AUTOR 
-Sayurid Bautista Cruz
+**Sayurid Bautista Cruz** / [@sayuridbc](https://github.com/sayuridbc)
 Unidad 2
 Aplicaiónes web Orientadas a Servicios
 Octubre 2024 
