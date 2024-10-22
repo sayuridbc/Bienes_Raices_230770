@@ -1,10 +1,11 @@
 //ejemplo de activacion
 //console.log("Hola desde NodeJS, esto esta en hot reload")
 
-import express from 'express';
 //const express = require('express'); 
 //importar la libreria para crear un servidor web
 //instanciar nuestra aplicaion web
+
+import express from 'express';
 const app = express()
 
 const port = 3000;
