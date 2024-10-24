@@ -10,7 +10,7 @@ proyecto se realizara in sistema CRUD en el contexto de las operaciones comunes 
 |--|--|--|--|--|
 |8.|17/10/24|Nuevo Repositorio del Proyecto implementando .gitignore|1|Finalizada ⭐|
 |9.|22/10/24|Creación de una Aplicación Web usando Express|11|Finalizada ⭐|
-|3.|---------||----|--------|
+|10.|24/10/24||Opreraciones Básicas de una API a traves de los verbos http|Finalizada ⭐|
 |4.|---------||-----|--------|
 |5.|-------- ||----|        |
 |6.|---------||----|        |
