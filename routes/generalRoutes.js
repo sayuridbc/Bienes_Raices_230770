@@ -8,7 +8,7 @@ router.get("/", function(req, res) {
 
 router.get("/quieneres", function(req, res) { // Cambié el nombre de la ruta a 'quien-eres' para evitar espacios
     res.json({
-        "nombre": "Jonathan",
+        "nombre": "Sayurid Bautista",
         "carrera": "ti dsm",
         "grado": "4",
         "grupo": "A"
