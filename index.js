@@ -1,23 +1,44 @@
-//Ejemplo de activación de hot reload
-//console.log ("Hola desde Node.js")
-
-
-//const express=require('express');
-// importar la libreria para crear un servidor web -Common JS/ECMA Script 6
-//Instanciar nuestra aplicaccion web
-
 import express from 'express';
-import generalRoutes from './routes/generalRoutes.js'
-import userRoutes from './routes/userRoutes.js'
-const app = express()
+import csurf from 'csurf';
+import cookieParser from 'cookie-parser';
+import usuarioRoutes from './routes/userRoutes.js'
+import db from './config/db.js'
+//Crear la app
+const app = express();
 
-//Configuramos  nuetro servidor web
-const port = 3000;
-app.listen(port ,()=>{
-console.log (`la aplicacion ah iniciado en el puerto: ${port}`);
-})
+//Habilitar lectura de datos del formulario
+app.use(express.urlencoded({extended:true}))
 
-app.use('/',generalRoutes);
-app.use('/usuario/',userRoutes);
+//Habilitar cookie-parser
+app.use(cookieParser())
+
+//Habilitar CSRF
+app.use(csurf({cookie:true}))
+
+//Routing
+app.use('/auth',usuarioRoutes)
+
+//Conexion a la bd
+try{
+    await db.authenticate();
+    db.sync()
+    console.log('Conexion Correcta a la Base de datos')
+}catch(error){
+    console.log(error)
+}
+
+//Habilitar pug
+app.set('view engine','pug')
+app.set('Views','/.Views')
+
+//Carpeta Publica
+app.use(express.static('Public'))
+
+// Definir un puerto y arrancar el proyecto
+const port =process.env.PORT || 3000;
+app.listen(port, () => {
+    console.log(`La aplicación se ha iniciado en el puerto ${port}`);
+});
+
 
 

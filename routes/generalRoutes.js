@@ -1,23 +1,19 @@
-import express from 'express';
-const router = express.Router();
 
-//Routing, enrrutamineto para peticiones 
+import express from "express";
+const router = express.Router(); // Cambié a 'router' para evitar conflictos
 
-router.get("/", function(req,res){
-res.send("Hola desde desde la web, en Node.js")
-})
+router.get("/", function(req, res) {
+    res.send("Hola desde la web, en NodeJS");
+});
 
-router.get("/quienEres", function(req,res){
-res.json(
-    {
-        "nombre":"Sayurid Bautista Cruz",
-        "carrera": "TIADSM",
-        "Grado":"4",
-        "grupo":"A"
-    }
-)
-})
-
+router.get("/quieneres", function(req, res) { // Cambié el nombre de la ruta a 'quien-eres' para evitar espacios
+    res.json({
+        "nombre": "Sayurid Bautista",
+        "carrera": "ti dsm",
+        "grado": "4",
+        "grupo": "A"
+    });
+});
 
 export default router; 
 //esta palabra reservadade JS me permite exportar a los elementos
