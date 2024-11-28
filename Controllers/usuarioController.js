@@ -3,6 +3,7 @@ import Usuario from '../models/Usuario.js'
 import {generarId} from '../Helpers/tokens.js'
 import {emailRegistro} from '../Helpers/emails.js'
 import { where } from 'sequelize'
+import { request, response } from 'express'
 const formularioLogin = (req,res) => {
     res.render('auth/login',{
          pagina : 'IniciarSesión'
@@ -106,8 +107,81 @@ const registrar = async (req,res) => {
 
 const formularioPassword = (req,res) => {
     res.render('auth/password',{
-        pagina : 'Ruecupera Tu Contraseña'
+        pagina : 'Recupera Tu Contraseña'
     })
+
+    const passwordReset = async(request, response) =>{
+
+        console.log("Validando los datos para la recuperación de la contraseña")
+        //validacion de los campos que se reciben del formulario 
+        //validacion FrontEnd 
+        await check('correo_usuario').notEmpty().withMessage("El correo electronico es un campo obligatorio.").isEmail().withMessage
+        ("El correo electronico no tiene el formato de: usuario@dominio.extension").run
+        (request)
+        let result = validationResult(request)
+
+        //verificamos si hay errores de validacion
+        if(!result.isEmpty())
+        {
+            return response.render("auth/passwordRecovery", {
+                page: 'Error al intentar resetear la contraseña',
+                errors: result.array(),
+                csrfToken: request.csrfToken()
+            })
+        }
+        const{correo_usuario:email} = request.body
+    
+
+const existingUser = await User.findOne({ where: { email, confirmed:1}})
+
+if(existingUser)
+{
+    return response.render("auth/passwordRecovery",{
+        page: 'Error, no existe una cuenta asociada al correo electronico ingresado',
+        csrfToken: request.csrfToken(),
+        errors: [{msg: `Por favor revisa los datos e intentalo de nuevo`}],
+        user: {
+            email: email
+        }
+    })
+}
+
+const verfyTokenPasswordChange=async (request,response) =>{
+    const {token} = request.params;
+    const userTokenOwner = await User.findOne({where :{token}})
+
+    if(!userTokenOwner)
+    {
+        response.render('templates/message',{
+            csrfToken: request.csrfToken(),
+            page: 'error',
+            msg: 'El token ha expirado o no existe'
+    })
+    }
+    return 0;
+}
+const updatePassword = async(request, response)=>{
+    return 0;
+}
+
+//Registramos los datos en la base de datos 
+existingUser.password=null;
+token= generarId();
+existingUser.save();
+
+emailAfterReister({
+    name: newUser.name,
+    email: newUser.email,
+    token: newUser.token
+})
+
+//Enviar el correo de confirmacion 
+emailChangePassword({
+    name: existingUser.name,
+    email: existingUser.email,
+    token: existingUser.token
+})
+    }
 }
 export {
     formularioLogin,
