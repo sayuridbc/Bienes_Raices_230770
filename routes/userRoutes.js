@@ -13,4 +13,4 @@ router.get('/password',formularioPassword)
 router.get("/passwordRecovery/:token", verifyTokenPasswordChange) 
 router.post("/passwordRecovery/:token", updatePassword)
 
-export default router;
+export default router; 
