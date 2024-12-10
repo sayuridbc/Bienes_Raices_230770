@@ -12,9 +12,9 @@ proyecto se realizara in sistema CRUD en el contexto de las operaciones comunes 
 |9.|22/10/24|Creación de una Aplicación Web usando Express|12|Finalizada ⭐|
 |10.|24/10/24|Operaciones Básicas de una API a traves de los verbos http|12|Finalizada ⭐|
 |11.|05/11/24|Implementación de Pantallas|13|Finalizada⭐|
-|5.|-------- ||----|        |
-|6.|---------||----|        |
-|7.|---------||----|        |
+|12.|-------- ||----|Finalizada⭐     |
+|13.|---------||----| Finalizada⭐      |
+|4.|---------||----|Activa ⏰|
 
 ### Tech Stack 
 ![NodeJS](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
